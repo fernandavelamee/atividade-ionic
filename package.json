@@ -4,7 +4,8 @@
   "description": "MVP front-end do Portal do Aluno UCSal — Ionic 1 + AngularJS com dados mockados",
   "private": true,
   "scripts": {
-    "start": "http-server www -p 8100 -c-1"
+    "start": "http-server www -p 8100 -c-1",
+    "test": "node --test tests/services.test.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
