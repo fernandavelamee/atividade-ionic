@@ -111,6 +111,19 @@
             controllerAs: 'vm'
           }
         }
+      })
+
+      // Atualização cadastral (RF03)
+      .state('app.perfil', {
+        url: '/perfil',
+        data: { secaoMenu: 'perfil' },
+        views: {
+          menuContent: {
+            templateUrl: 'templates/perfil.html',
+            controller: 'PerfilCtrl',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');

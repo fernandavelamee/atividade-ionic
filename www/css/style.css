@@ -597,3 +597,89 @@ body {
   line-height: 1.65;
   color: var(--cor-texto);
 }
+
+/* ==========================================================================
+   Atualização cadastral
+   ========================================================================== */
+.perfil-resumo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 12px;
+  padding: 16px;
+  border-radius: var(--raio);
+  background: linear-gradient(150deg, var(--ucsal-azul-marinho), var(--ucsal-azul-medio));
+  color: var(--ucsal-branco);
+  box-shadow: var(--sombra);
+}
+
+.perfil-resumo h2 {
+  color: var(--ucsal-branco);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.perfil-resumo p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 2px 0 0;
+}
+
+.avatar-grande {
+  flex-basis: 60px;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+}
+
+.lista-formulario {
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  background: var(--ucsal-branco);
+}
+
+.lista-formulario .item-divider {
+  display: flex;
+  align-items: center;
+}
+
+.aviso-bloqueado {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+}
+
+.campo-bloqueado input[disabled] {
+  background-color: transparent;
+  color: var(--cor-texto-suave);
+  cursor: not-allowed;
+}
+
+.linha-campos {
+  display: flex;
+}
+
+.linha-campos > .item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.linha-campos > .campo-uf {
+  flex: 0 0 90px;
+}
+
+.erro-campo {
+  padding: 4px 16px 10px;
+  font-size: 13px;
+  color: var(--status-erro);
+  background: var(--ucsal-branco);
+}
+
+.acoes-formulario .mensagem {
+  margin-bottom: 10px;
+}
+
+.acoes-formulario .button .icon {
+  margin-right: 4px;
+}

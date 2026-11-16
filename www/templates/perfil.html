@@ -1,0 +1,149 @@
+<ion-view view-title="Meu Cadastro">
+  <ion-content class="fundo-claro">
+    <div class="conteudo-limitado">
+
+      <div class="estado-carregando" ng-if="vm.carregando">
+        <ion-spinner icon="crescent" class="spinner-positive"></ion-spinner>
+        <p>Carregando seus dados...</p>
+      </div>
+
+      <div class="mensagem mensagem-erro margem" ng-if="!vm.carregando && !vm.formulario && vm.erro" role="alert">
+        <i class="icon ion-alert-circled"></i>
+        <span>{{ vm.erro }}</span>
+      </div>
+
+      <form name="formPerfil" novalidate ng-if="!vm.carregando && vm.formulario">
+
+        <section class="perfil-resumo">
+          <div class="avatar-iniciais avatar-grande" aria-hidden="true">{{ vm.formulario.nome.charAt(0) }}</div>
+          <div>
+            <h2>{{ vm.aluno.nome }}</h2>
+            <p>{{ vm.aluno.curso }} · Campus {{ vm.aluno.campus }}</p>
+          </div>
+        </section>
+
+        <!-- Dados institucionais: somente leitura (ng-disabled) -->
+        <div class="list list-inset lista-formulario">
+          <div class="item item-divider">
+            <i class="icon ion-university"></i> Dados institucionais
+            <span class="aviso-bloqueado"><i class="icon ion-locked"></i> somente leitura</span>
+          </div>
+          <label class="item item-input item-stacked-label campo-bloqueado">
+            <span class="input-label">Nome completo</span>
+            <input type="text" ng-model="vm.formulario.nome" ng-disabled="vm.camposInstitucionaisBloqueados">
+          </label>
+          <label class="item item-input item-stacked-label campo-bloqueado">
+            <span class="input-label">Matrícula</span>
+            <input type="text" ng-model="vm.formulario.matricula" ng-disabled="vm.camposInstitucionaisBloqueados">
+          </label>
+          <label class="item item-input item-stacked-label campo-bloqueado">
+            <span class="input-label">Curso</span>
+            <input type="text" ng-model="vm.formulario.curso" ng-disabled="vm.camposInstitucionaisBloqueados">
+          </label>
+          <label class="item item-input item-stacked-label campo-bloqueado">
+            <span class="input-label">Campus / Turno</span>
+            <input type="text" value="{{ vm.formulario.campus }} · {{ vm.formulario.turno }}" ng-disabled="vm.camposInstitucionaisBloqueados">
+          </label>
+        </div>
+
+        <!-- Contato: editável -->
+        <div class="list list-inset lista-formulario">
+          <div class="item item-divider"><i class="icon ion-ios-chatboxes-outline"></i> Contato</div>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.email) }">
+            <span class="input-label">E-mail pessoal</span>
+            <input type="email" name="email" placeholder="seuemail@exemplo.com" autocomplete="email" required
+                   ng-model="vm.formulario.email" ng-pattern="vm.regras.email">
+          </label>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.email)">Informe um e-mail válido.</div>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.telefone) }">
+            <span class="input-label">Telefone / WhatsApp</span>
+            <input type="tel" name="telefone" placeholder="(71) 98765-4321" autocomplete="tel" required
+                   ng-model="vm.formulario.telefone" ng-pattern="vm.regras.telefone">
+          </label>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.telefone)">Informe o telefone com DDD, ex.: (71) 98765-4321.</div>
+        </div>
+
+        <!-- Endereço: editável -->
+        <div class="list list-inset lista-formulario">
+          <div class="item item-divider"><i class="icon ion-ios-location-outline"></i> Endereço</div>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.cep) }">
+            <span class="input-label">CEP</span>
+            <input type="text" name="cep" inputmode="numeric" maxlength="9" placeholder="00000-000" autocomplete="postal-code" required
+                   ng-model="vm.formulario.endereco.cep" ng-pattern="vm.regras.cep">
+          </label>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.cep)">Informe um CEP com 8 dígitos.</div>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.rua) }">
+            <span class="input-label">Rua</span>
+            <input type="text" name="rua" placeholder="Rua, avenida, travessa..." autocomplete="address-line1" required
+                   ng-model="vm.formulario.endereco.rua">
+          </label>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.rua)">Informe a rua.</div>
+
+          <div class="linha-campos">
+            <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.numero) }">
+              <span class="input-label">Número</span>
+              <input type="text" name="numero" placeholder="Nº ou S/N" required
+                     ng-model="vm.formulario.endereco.numero">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Complemento</span>
+              <input type="text" name="complemento" placeholder="Opcional"
+                     ng-model="vm.formulario.endereco.complemento">
+            </label>
+          </div>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.numero)">Informe o número (ou "S/N").</div>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.bairro) }">
+            <span class="input-label">Bairro</span>
+            <input type="text" name="bairro" placeholder="Bairro" required
+                   ng-model="vm.formulario.endereco.bairro">
+          </label>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.bairro)">Informe o bairro.</div>
+
+          <div class="linha-campos">
+            <label class="item item-input item-stacked-label" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.cidade) }">
+              <span class="input-label">Cidade</span>
+              <input type="text" name="cidade" placeholder="Cidade" autocomplete="address-level2" required
+                     ng-model="vm.formulario.endereco.cidade">
+            </label>
+            <label class="item item-input item-stacked-label campo-uf" ng-class="{ 'campo-invalido': vm.mostrarErro(formPerfil.uf) }">
+              <span class="input-label">UF</span>
+              <input type="text" name="uf" maxlength="2" placeholder="BA" autocomplete="address-level1" required
+                     ng-model="vm.formulario.endereco.uf" ng-pattern="vm.regras.uf">
+            </label>
+          </div>
+          <div class="erro-campo" ng-show="vm.mostrarErro(formPerfil.cidade) || vm.mostrarErro(formPerfil.uf)">Informe a cidade e a UF (2 letras).</div>
+        </div>
+
+        <!-- Feedback e ações -->
+        <div class="padding acoes-formulario">
+          <div class="mensagem mensagem-erro" ng-if="vm.erro" role="alert">
+            <i class="icon ion-alert-circled"></i>
+            <span>{{ vm.erro }}</span>
+          </div>
+
+          <div class="mensagem mensagem-info" ng-if="vm.aluno.atualizadoEm && formPerfil.$pristine">
+            <i class="icon ion-ios-checkmark-outline"></i>
+            <span>Última atualização em {{ vm.aluno.atualizadoEm | date:"dd/MM/yyyy 'às' HH:mm" }}.</span>
+          </div>
+
+          <button type="button" class="button button-block button-positive"
+                  ng-click="vm.salvar(formPerfil)" ng-disabled="vm.salvando || formPerfil.$pristine">
+            <ion-spinner icon="dots" class="spinner-light" ng-if="vm.salvando"></ion-spinner>
+            <span ng-if="!vm.salvando"><i class="icon ion-checkmark-round"></i> Salvar Alterações</span>
+          </button>
+
+          <button type="button" class="button button-block button-positive button-outline"
+                  ng-click="vm.desfazer(formPerfil)" ng-disabled="vm.salvando || formPerfil.$pristine">
+            Desfazer alterações
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
