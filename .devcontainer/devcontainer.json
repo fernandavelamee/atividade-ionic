@@ -1,0 +1,12 @@
+{
+  "name": "Portal do Aluno UCSal (Ionic 1 + AngularJS)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "forwardPorts": [8100],
+  "portsAttributes": {
+    "8100": {
+      "label": "Portal do Aluno UCSal",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "npm install"
+}
