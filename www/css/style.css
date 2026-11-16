@@ -683,3 +683,189 @@ body {
 .acoes-formulario .button .icon {
   margin-right: 4px;
 }
+
+/* ==========================================================================
+   Consulta financeira
+   ========================================================================== */
+.seletor-semestre {
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.seletor-semestre .input-label {
+  font-weight: 600;
+  color: var(--ucsal-azul-marinho);
+}
+
+.seletor-semestre select {
+  font-weight: 700;
+  color: var(--ucsal-azul-marinho);
+}
+
+.resumo-financeiro {
+  padding: 0 7px;
+}
+
+.cartao-resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  background: var(--ucsal-branco);
+}
+
+.cartao-resumo strong {
+  font-size: 20px;
+  color: var(--cor-texto);
+}
+
+.cartao-resumo small {
+  color: var(--cor-texto-suave);
+}
+
+.resumo-rotulo {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.resumo-pago {
+  border-top: 4px solid var(--status-paga);
+}
+
+.resumo-pago .resumo-rotulo {
+  color: var(--status-paga);
+}
+
+.resumo-a-pagar {
+  border-top: 4px solid var(--status-a-pagar);
+}
+
+.resumo-a-pagar .resumo-rotulo {
+  color: #a86500;
+}
+
+.mensalidade {
+  border-left: 6px solid transparent;
+}
+
+.mensalidade .item {
+  border-color: transparent;
+}
+
+.mensalidade.mensalidade-paga {
+  border-left-color: var(--status-paga);
+}
+
+.mensalidade.mensalidade-a-pagar {
+  border-left-color: var(--status-a-pagar);
+}
+
+.mensalidade-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mensalidade-topo h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ucsal-azul-marinho);
+}
+
+.mensalidade-info {
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+}
+
+.mensalidade-valor {
+  font-size: 22px !important;
+  font-weight: 800;
+  color: var(--cor-texto) !important;
+  margin: 8px 0 4px !important;
+}
+
+.mensalidade-detalhe {
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+.texto-pago {
+  color: var(--status-paga) !important;
+}
+
+.texto-atraso {
+  color: var(--status-erro) !important;
+  font-weight: 600;
+}
+
+/* Badge de status: verde = Paga, laranja = A Pagar */
+.badge-status {
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.badge-status.badge-paga {
+  background: var(--status-paga);
+  color: var(--ucsal-branco);
+}
+
+.badge-status.badge-a-pagar {
+  background: var(--status-a-pagar);
+  color: var(--status-a-pagar-texto);
+}
+
+.area-boleto {
+  background: var(--status-a-pagar-suave);
+  border-top: 1px dashed var(--status-a-pagar) !important;
+}
+
+.rotulo-boleto {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #a86500;
+}
+
+.linha-digitavel {
+  font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 13px !important;
+  line-height: 1.5;
+  color: var(--cor-texto) !important;
+  background: var(--ucsal-branco);
+  border-radius: var(--raio-pequeno);
+  padding: 8px 10px;
+  margin: 6px 0 10px !important;
+  word-break: break-all;
+  white-space: normal !important;
+  user-select: all;
+}
+
+.button.botao-copiar {
+  background: var(--status-a-pagar);
+  border-color: var(--status-a-pagar);
+  color: var(--status-a-pagar-texto);
+  margin: 0;
+}
+
+.button.botao-copiar.copiado {
+  background: var(--status-paga);
+  border-color: var(--status-paga);
+  color: var(--ucsal-branco);
+}
+
+.button.botao-copiar .icon {
+  margin-right: 4px;
+}

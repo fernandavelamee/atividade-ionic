@@ -1,0 +1,103 @@
+<ion-view view-title="Financeiro">
+  <ion-content class="fundo-claro">
+    <div class="conteudo-limitado">
+
+      <!-- Seletor do semestre letivo (ng-model + ng-options + ng-change) -->
+      <div class="list list-inset seletor-semestre">
+        <label class="item item-input item-select">
+          <span class="input-label"><i class="icon ion-ios-calendar-outline"></i> Semestre letivo</span>
+          <select aria-label="Semestre letivo"
+                  ng-model="vm.semestreSelecionado"
+                  ng-options="semestre for semestre in vm.semestres"
+                  ng-change="vm.aoTrocarSemestre()"
+                  ng-disabled="vm.carregando || !vm.semestres.length"></select>
+        </label>
+      </div>
+
+      <div class="estado-carregando" ng-if="vm.carregando">
+        <ion-spinner icon="crescent" class="spinner-positive"></ion-spinner>
+        <p>Carregando mensalidades...</p>
+      </div>
+
+      <div class="mensagem mensagem-erro margem" ng-if="vm.erro" role="alert">
+        <i class="icon ion-alert-circled"></i>
+        <span>{{ vm.erro }}</span>
+      </div>
+
+      <div ng-if="!vm.carregando && vm.semestres.length">
+
+        <!-- Resumo do semestre (filtro currency) -->
+        <div class="row resumo-financeiro">
+          <div class="col">
+            <div class="cartao-resumo resumo-pago">
+              <span class="resumo-rotulo"><i class="icon ion-checkmark-circled"></i> Pago</span>
+              <strong>{{ vm.resumo.totalPago | currency }}</strong>
+              <small>{{ vm.resumo.quantidadePagas }} parcela(s)</small>
+            </div>
+          </div>
+          <div class="col">
+            <div class="cartao-resumo resumo-a-pagar">
+              <span class="resumo-rotulo"><i class="icon ion-clock"></i> A pagar</span>
+              <strong>{{ vm.resumo.totalAPagar | currency }}</strong>
+              <small>{{ vm.resumo.quantidadeAPagar }} parcela(s)</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="mensagem mensagem-alerta margem" ng-show="vm.resumo.totalEmAtraso > 0">
+          <i class="icon ion-alert-circled"></i>
+          <span>Há {{ vm.resumo.totalEmAtraso | currency }} em parcelas vencidas neste semestre.</span>
+        </div>
+
+        <!-- Mensalidades do semestre escolhido: ng-repeat + filter (comparação exata) + orderBy -->
+        <div class="card mensalidade"
+             ng-repeat="parcela in vm.mensalidades | filter:{ semestre: vm.semestreSelecionado }:true | orderBy:'parcela' track by parcela.id"
+             ng-class="{ 'mensalidade-paga': parcela.status === 'PAGA', 'mensalidade-a-pagar': parcela.status === 'A_PAGAR' }">
+
+          <div class="item item-text-wrap">
+            <div class="mensalidade-topo">
+              <div>
+                <h2>{{ parcela.referencia }}</h2>
+                <p class="mensalidade-info">
+                  Parcela {{ parcela.parcela }}/{{ parcela.totalParcelas }} ·
+                  Vencimento {{ parcela.vencimento | date:'dd/MM/yyyy' }}
+                </p>
+              </div>
+              <span class="badge-status"
+                    ng-class="{ 'badge-paga': parcela.status === 'PAGA', 'badge-a-pagar': parcela.status === 'A_PAGAR' }">
+                {{ parcela.statusRotulo }}
+              </span>
+            </div>
+
+            <p class="mensalidade-valor">{{ parcela.valor | currency }}</p>
+
+            <p class="mensalidade-detalhe texto-pago" ng-show="parcela.status === 'PAGA'">
+              <i class="icon ion-ios-checkmark-outline"></i> Pago em {{ parcela.pagoEm | date:'dd/MM/yyyy' }}
+            </p>
+            <p class="mensalidade-detalhe texto-atraso" ng-show="parcela.emAtraso">
+              <i class="icon ion-alert-circled"></i> Parcela vencida
+            </p>
+          </div>
+
+          <!-- Boleto: somente para parcelas A Pagar -->
+          <div class="item item-text-wrap area-boleto" ng-if="parcela.status === 'A_PAGAR'">
+            <span class="rotulo-boleto">Linha digitável (fictícia)</span>
+            <p class="linha-digitavel">{{ parcela.linhaDigitavel }}</p>
+            <button type="button" class="button button-block botao-copiar"
+                    ng-class="{ copiado: vm.copiadoId === parcela.id }"
+                    ng-click="vm.copiarCodigo(parcela)">
+              <i class="icon" ng-class="vm.copiadoId === parcela.id ? 'ion-checkmark-round' : 'ion-ios-copy-outline'"></i>
+              {{ vm.copiadoId === parcela.id ? 'Código copiado!' : 'Copiar Código de Barras' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="estado-vazio" ng-if="!vm.carregando && !vm.erro && !vm.semestres.length">
+        <i class="icon ion-cash"></i>
+        <p>Nenhuma mensalidade encontrada para a sua matrícula.</p>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

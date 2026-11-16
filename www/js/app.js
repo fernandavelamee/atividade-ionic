@@ -124,6 +124,19 @@
             controllerAs: 'vm'
           }
         }
+      })
+
+      // Consulta financeira — mensalidades por semestre (RF04)
+      .state('app.financeiro', {
+        url: '/financeiro',
+        data: { secaoMenu: 'financeiro' },
+        views: {
+          menuContent: {
+            templateUrl: 'templates/financeiro.html',
+            controller: 'FinanceiroCtrl',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');
