@@ -1,0 +1,52 @@
+<ion-view view-title="Entrar" class="tela-login">
+  <ion-content class="login-fundo">
+    <div class="login-container">
+
+      <header class="login-marca">
+        <img src="img/logo-ucsal.svg" alt="" class="login-logo">
+        <h1>Portal do Aluno</h1>
+        <p>Universidade Católica do Salvador</p>
+      </header>
+
+      <form name="formLogin" class="login-cartao" novalidate>
+        <h2>Acesse sua conta</h2>
+
+        <div class="list login-campos">
+          <label class="item item-input" ng-class="{ 'campo-invalido': vm.tentouEnviar && vm.campoVazio('matricula') }">
+            <i class="icon ion-card placeholder-icon"></i>
+            <input type="text" name="matricula" inputmode="numeric" maxlength="8" autocomplete="username"
+                   placeholder="Matrícula" aria-label="Matrícula"
+                   ng-model="vm.credenciais.matricula" ng-disabled="vm.carregando">
+          </label>
+          <label class="item item-input" ng-class="{ 'campo-invalido': vm.tentouEnviar && vm.campoVazio('senha') }">
+            <i class="icon ion-locked placeholder-icon"></i>
+            <input type="password" name="senha" autocomplete="current-password"
+                   placeholder="Senha" aria-label="Senha"
+                   ng-model="vm.credenciais.senha" ng-disabled="vm.carregando">
+          </label>
+        </div>
+
+        <div class="mensagem mensagem-erro" ng-if="vm.erro" role="alert">
+          <i class="icon ion-alert-circled"></i>
+          <span>{{ vm.erro }}</span>
+        </div>
+
+        <button type="submit" class="button button-block button-positive botao-entrar"
+                ng-click="vm.entrar()" ng-disabled="vm.carregando">
+          Entrar
+        </button>
+
+        <div class="login-demo">
+          <i class="icon ion-information-circled"></i>
+          <span>
+            Ambiente de demonstração — matrícula <strong>{{ vm.contaDemo.matricula }}</strong>,
+            senha <strong>{{ vm.contaDemo.senha }}</strong>.
+            <a href="" ng-click="vm.usarContaDemo()">Preencher</a>
+          </span>
+        </div>
+      </form>
+
+      <p class="login-rodape">Campi Pituaçu e Federação · Salvador – BA</p>
+    </div>
+  </ion-content>
+</ion-view>

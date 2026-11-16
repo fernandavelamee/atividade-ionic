@@ -196,3 +196,107 @@ body {
 .estado-vazio p {
   margin-bottom: 16px;
 }
+
+/* ==========================================================================
+   Tela de login
+   ========================================================================== */
+.login-fundo {
+  background: linear-gradient(160deg, var(--ucsal-azul-marinho) 0%, var(--ucsal-azul-medio) 60%, var(--ucsal-azul-claro) 140%);
+}
+
+.login-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 48px 20px 24px;
+}
+
+.login-marca {
+  text-align: center;
+  color: var(--ucsal-branco);
+  margin-bottom: 24px;
+}
+
+.login-logo {
+  width: 84px;
+  height: 84px;
+  margin-bottom: 12px;
+}
+
+.login-marca h1 {
+  color: var(--ucsal-branco);
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.login-marca p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 4px 0 0;
+}
+
+.login-cartao {
+  background: var(--ucsal-branco);
+  border-radius: 18px;
+  padding: 22px 18px 18px;
+  box-shadow: 0 12px 32px rgba(6, 27, 62, 0.35);
+}
+
+.login-cartao h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ucsal-azul-marinho);
+  margin: 0 0 14px;
+}
+
+.login-campos {
+  margin-bottom: 12px;
+}
+
+.login-campos .item-input {
+  border-radius: var(--raio-pequeno);
+  border: 1px solid var(--cor-borda);
+  margin-bottom: 10px;
+}
+
+.login-campos .item-input .placeholder-icon {
+  color: var(--ucsal-azul-medio);
+}
+
+.item-input.campo-invalido {
+  border-color: var(--status-erro) !important;
+  box-shadow: inset 3px 0 0 var(--status-erro);
+}
+
+.botao-entrar {
+  margin-top: 14px;
+  min-height: 48px;
+  font-size: 17px;
+}
+
+.login-demo {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: var(--raio-pequeno);
+  background: var(--ucsal-azul-claro-suave);
+  color: var(--ucsal-azul-marinho);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.login-demo .icon {
+  font-size: 18px;
+}
+
+.login-demo a {
+  color: var(--ucsal-azul-medio);
+  font-weight: 700;
+}
+
+.login-rodape {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  margin-top: 20px;
+}

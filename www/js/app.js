@@ -68,15 +68,41 @@
   configurarRotas.$inject = ['$stateProvider', '$urlRouterProvider'];
 
   function configurarRotas($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      // Tela pública de autenticação (RF01)
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'vm',
+        data: { publica: true }
+      });
+
     $urlRouterProvider.otherwise('/login');
   }
 
   /* ---------------------------------------------------------------------------
-   * Inicialização: plugins nativos (quando rodando via Cordova).
+   * Inicialização: restaura a sessão, protege as rotas privadas e prepara
+   * os plugins nativos (quando o app roda via Cordova).
    * ------------------------------------------------------------------------- */
-  inicializarAplicacao.$inject = ['$ionicPlatform', '$window'];
+  inicializarAplicacao.$inject = ['$rootScope', '$state', '$ionicPlatform', '$window', 'AuthService'];
 
-  function inicializarAplicacao($ionicPlatform, $window) {
+  function inicializarAplicacao($rootScope, $state, $ionicPlatform, $window, AuthService) {
+    AuthService.restaurarSessao();
+
+    // Guarda de rotas: estados sem `data.publica` exigem aluno autenticado
+    $rootScope.$on('$stateChangeStart', function (evento, destino) {
+      var rotaPublica = !!(destino.data && destino.data.publica);
+
+      if (!rotaPublica && !AuthService.estaAutenticado()) {
+        evento.preventDefault();
+        $state.go('login');
+      } else if (destino.name === 'login' && AuthService.estaAutenticado()) {
+        evento.preventDefault();
+        $state.go('app.noticias');
+      }
+    });
+
     $ionicPlatform.ready(function () {
       var plugins = $window.cordova && $window.cordova.plugins;
       if (plugins && plugins.Keyboard) {
