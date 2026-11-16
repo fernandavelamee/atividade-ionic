@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Portal do Aluno UCSal — identidade visual
+   Cores institucionais (azul-marinho, azul-claro e branco) definidas como
+   variáveis CSS e aplicadas sobre as classes de cor do Ionic
+   (bar-positive, button-positive, button-calm, spinner-positive...).
+   ========================================================================== */
+
+:root {
+  /* Paleta institucional */
+  --ucsal-azul-marinho: #0a2a5e;
+  --ucsal-azul-marinho-escuro: #061b3e;
+  --ucsal-azul-medio: #164a94;
+  --ucsal-azul-claro: #2fa4e7;
+  --ucsal-azul-claro-suave: #e8f4fc;
+  --ucsal-branco: #ffffff;
+
+  /* Neutros */
+  --cor-fundo: #f2f5f9;
+  --cor-texto: #1c2433;
+  --cor-texto-suave: #5b6577;
+  --cor-borda: #dde3ec;
+
+  /* Estados */
+  --status-paga: #1e8e4e;
+  --status-paga-suave: #e3f5ea;
+  --status-a-pagar: #f5a524;
+  --status-a-pagar-texto: #3d2600;
+  --status-a-pagar-suave: #fff4e0;
+  --status-erro: #c93b3b;
+  --status-erro-suave: #fdecec;
+
+  /* Forma */
+  --raio: 14px;
+  --raio-pequeno: 8px;
+  --sombra: 0 2px 12px rgba(10, 42, 94, 0.08);
+}
+
+body {
+  color: var(--cor-texto);
+}
+
+/* ----- Barras de navegação (ion-nav-bar class="bar-positive") ----- */
+.bar.bar-positive {
+  background-color: var(--ucsal-azul-marinho);
+  border-color: var(--ucsal-azul-marinho-escuro);
+  background-image: none;
+}
+
+.bar.bar-positive .title,
+.bar.bar-positive .button,
+.bar.bar-positive .button.button-clear,
+.bar.bar-positive .button.button-icon {
+  color: var(--ucsal-branco);
+  background: transparent;
+  border-color: transparent;
+}
+
+/* ----- Botões ----- */
+.button.button-positive {
+  background-color: var(--ucsal-azul-marinho);
+  border-color: var(--ucsal-azul-marinho-escuro);
+  color: var(--ucsal-branco);
+}
+
+.button.button-positive:hover {
+  color: var(--ucsal-branco);
+}
+
+.button.button-positive.activated,
+.button.button-positive:active {
+  background-color: var(--ucsal-azul-marinho-escuro);
+  border-color: var(--ucsal-azul-marinho-escuro);
+}
+
+.button.button-positive.button-outline {
+  background: transparent;
+  border-color: var(--ucsal-azul-marinho);
+  color: var(--ucsal-azul-marinho);
+}
+
+.button.button-positive.button-outline.activated {
+  background-color: var(--ucsal-azul-marinho);
+  color: var(--ucsal-branco);
+}
+
+.button.button-positive.button-clear {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ucsal-azul-marinho);
+}
+
+.button.button-calm {
+  background-color: var(--ucsal-azul-claro);
+  border-color: var(--ucsal-azul-claro);
+  color: var(--ucsal-branco);
+}
+
+.button {
+  border-radius: var(--raio-pequeno);
+  font-weight: 600;
+}
+
+.button[disabled],
+.button.disabled {
+  opacity: 0.45;
+}
+
+/* ----- Spinners ----- */
+.spinner-positive svg {
+  stroke: var(--ucsal-azul-marinho);
+  fill: var(--ucsal-azul-marinho);
+}
+
+.spinner-light svg {
+  stroke: var(--ucsal-branco);
+  fill: var(--ucsal-branco);
+}
+
+/* ----- Listas e divisores ----- */
+.item-divider {
+  background-color: var(--ucsal-azul-claro-suave);
+  color: var(--ucsal-azul-marinho);
+  font-weight: 600;
+}
+
+.item-divider .icon {
+  margin-right: 6px;
+}
+
+/* ----- Utilitários de layout ----- */
+.fundo-claro {
+  background-color: var(--cor-fundo);
+}
+
+.conteudo-limitado {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+.margem {
+  margin: 12px;
+}
+
+/* ----- Mensagens de feedback (ng-if / ng-show) ----- */
+.mensagem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--raio-pequeno);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.mensagem .icon {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.mensagem-erro {
+  background-color: var(--status-erro-suave);
+  color: var(--status-erro);
+}
+
+.mensagem-sucesso {
+  background-color: var(--status-paga-suave);
+  color: var(--status-paga);
+}
+
+.mensagem-alerta {
+  background-color: var(--status-a-pagar-suave);
+  color: var(--status-a-pagar-texto);
+}
+
+.mensagem-info {
+  background-color: var(--ucsal-azul-claro-suave);
+  color: var(--ucsal-azul-marinho);
+}
+
+/* ----- Estados de carregamento e lista vazia ----- */
+.estado-carregando,
+.estado-vazio {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--cor-texto-suave);
+}
+
+.estado-vazio > .icon {
+  display: block;
+  font-size: 48px;
+  color: var(--ucsal-azul-claro);
+  margin-bottom: 8px;
+}
+
+.estado-vazio p {
+  margin-bottom: 16px;
+}

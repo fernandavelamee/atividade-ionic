@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Portal do Aluno">
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#164a94"/>
+      <stop offset="1" stop-color="#0a2a5e"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="url(#fundo)"/>
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="none" stroke="#2fa4e7" stroke-width="4"/>
+  <!-- capelo -->
+  <polygon points="60,30 100,48 60,66 20,48" fill="#ffffff"/>
+  <path d="M36 56 v16 c0 8 11 14 24 14 s24 -6 24 -14 v-16 l-24 11 z" fill="#ffffff" opacity="0.92"/>
+  <line x1="94" y1="51" x2="94" y2="74" stroke="#2fa4e7" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="94" cy="77" r="5" fill="#2fa4e7"/>
+</svg>
