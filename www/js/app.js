@@ -78,10 +78,13 @@
         data: { publica: true }
       })
 
-      // Estado abstrato com o menu lateral; as telas privadas são filhas dele
+      // Estado abstrato com o menu lateral; as telas privadas são filhas dele.
+      // cache: false → ao sair, o menu e as telas filhas são destruídos, e o próximo
+      // aluno a entrar nunca vê dados da sessão anterior.
       .state('app', {
         url: '/app',
         abstract: true,
+        cache: false,
         templateUrl: 'templates/menu.html',
         controller: 'MenuCtrl',
         controllerAs: 'menu'
