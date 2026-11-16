@@ -76,6 +76,28 @@
         controller: 'LoginCtrl',
         controllerAs: 'vm',
         data: { publica: true }
+      })
+
+      // Estado abstrato com o menu lateral; as telas privadas são filhas dele
+      .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'MenuCtrl',
+        controllerAs: 'menu'
+      })
+
+      // Mural de notícias e atividades — tela inicial (RF02)
+      .state('app.noticias', {
+        url: '/noticias',
+        data: { secaoMenu: 'mural' },
+        views: {
+          menuContent: {
+            templateUrl: 'templates/noticias.html',
+            controller: 'NoticiasCtrl',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');

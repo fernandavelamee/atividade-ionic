@@ -1,0 +1,52 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <!-- Área principal: barra de navegação + conteúdo de cada tela (menuContent) -->
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" aria-label="Abrir menu"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <!-- Menu lateral (fica fixo em telas grandes) -->
+  <ion-side-menu side="left" expose-aside-when="large" class="menu-ucsal">
+    <ion-content>
+      <div class="menu-cabecalho">
+        <div class="avatar-iniciais" aria-hidden="true">{{ menu.iniciais() }}</div>
+        <div class="menu-aluno">
+          <strong>{{ $root.alunoLogado.nome }}</strong>
+          <span>Matrícula {{ $root.alunoLogado.matricula }}</span>
+          <span>{{ $root.alunoLogado.curso }} · {{ $root.alunoLogado.campus }}</span>
+        </div>
+      </div>
+
+      <ion-list class="menu-lista">
+        <ion-item menu-close href="#/app/noticias" class="item-icon-left"
+                  ng-class="{ ativo: menu.secaoAtiva('mural') }">
+          <i class="icon ion-ios-home-outline"></i>
+          Mural UCSal
+        </ion-item>
+        <ion-item menu-close href="#/app/perfil" class="item-icon-left"
+                  ng-class="{ ativo: menu.secaoAtiva('perfil') }">
+          <i class="icon ion-ios-person-outline"></i>
+          Meu Cadastro
+        </ion-item>
+        <ion-item menu-close href="#/app/financeiro" class="item-icon-left"
+                  ng-class="{ ativo: menu.secaoAtiva('financeiro') }">
+          <i class="icon ion-cash"></i>
+          Financeiro
+        </ion-item>
+        <ion-item menu-close class="item-icon-left item-sair" ng-click="menu.sair()">
+          <i class="icon ion-log-out"></i>
+          Sair
+        </ion-item>
+      </ion-list>
+
+      <p class="menu-rodape">Portal do Aluno UCSal · MVP</p>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>

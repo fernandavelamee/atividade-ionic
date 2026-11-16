@@ -1,0 +1,86 @@
+<ion-view view-title="Mural UCSal">
+  <ion-content class="fundo-claro">
+
+    <ion-refresher pulling-text="Puxe para atualizar" on-refresh="vm.atualizar()"></ion-refresher>
+
+    <div class="conteudo-limitado">
+
+      <section class="saudacao">
+        <p class="saudacao-titulo">Olá, {{ vm.primeiroNome }}!</p>
+        <p class="saudacao-subtitulo">Notícias e atividades da UCSal nos campi Pituaçu e Federação.</p>
+      </section>
+
+      <!-- Busca por texto (ng-model) -->
+      <label class="item item-input barra-busca">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Buscar no mural" aria-label="Buscar no mural"
+               ng-model="vm.filtro.texto">
+      </label>
+
+      <!-- Filtro por categoria (ng-click + ng-class) -->
+      <div class="chips" role="group" aria-label="Filtrar por categoria">
+        <button type="button" class="chip"
+                ng-class="{ ativo: vm.filtro.categoria === '' }"
+                ng-click="vm.selecionarCategoria('')">
+          <i class="icon ion-grid"></i> Todos
+        </button>
+        <button type="button" class="chip"
+                ng-repeat="categoria in vm.categorias track by categoria.valor"
+                ng-class="{ ativo: vm.filtro.categoria === categoria.valor }"
+                ng-click="vm.selecionarCategoria(categoria.valor)">
+          <i class="icon {{ categoria.icone }}"></i> {{ categoria.rotulo }}
+        </button>
+      </div>
+
+      <div class="estado-carregando" ng-if="vm.carregando">
+        <ion-spinner icon="crescent" class="spinner-positive"></ion-spinner>
+        <p>Carregando publicações...</p>
+      </div>
+
+      <div class="mensagem mensagem-erro margem" ng-if="vm.erro" role="alert">
+        <i class="icon ion-alert-circled"></i>
+        <span>{{ vm.erro }}</span>
+      </div>
+
+      <!-- Cards das publicações: ng-repeat + filtros nativos filter e orderBy -->
+      <div class="card card-publicacao"
+           ng-repeat="publicacao in vm.publicacoes | filter:{ categoria: vm.filtro.categoria } | filter:vm.filtro.texto | orderBy:'-data' as resultado track by publicacao.id">
+
+        <div class="item item-image imagem-publicacao" ng-click="vm.abrirDetalhe(publicacao)">
+          <img ng-src="{{ publicacao.imagem }}" alt="Imagem ilustrativa: {{ publicacao.titulo }}">
+          <span class="selo-destaque" ng-if="publicacao.destaque"><i class="icon ion-star"></i> Destaque</span>
+        </div>
+
+        <div class="item item-text-wrap corpo-publicacao">
+          <div class="meta-publicacao">
+            <span class="etiqueta"
+                  ng-class="{ 'etiqueta-noticia': publicacao.categoria === 'Notícia', 'etiqueta-evento': publicacao.categoria === 'Evento' }">
+              {{ publicacao.categoria }}
+            </span>
+            <span class="data-publicacao">
+              <i class="icon ion-ios-calendar-outline"></i> {{ publicacao.data | date:'dd/MM/yyyy' }}
+            </span>
+          </div>
+          <h2>{{ publicacao.titulo }}</h2>
+          <p>{{ publicacao.resumo }}</p>
+        </div>
+
+        <div class="item acoes-publicacao">
+          <span class="local-publicacao"><i class="icon ion-ios-location-outline"></i> {{ publicacao.local }}</span>
+          <button type="button" class="button button-small button-positive" ng-click="vm.abrirDetalhe(publicacao)">
+            Ler mais <i class="icon ion-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="estado-vazio" ng-if="!vm.carregando && !vm.erro && resultado.length === 0">
+        <i class="icon ion-ios-search"></i>
+        <p>Nenhuma publicação encontrada para este filtro.</p>
+        <button type="button" class="button button-small button-positive button-outline" ng-click="vm.limparFiltros()">
+          Limpar filtros
+        </button>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

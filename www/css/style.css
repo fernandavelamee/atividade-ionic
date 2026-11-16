@@ -300,3 +300,243 @@ body {
   font-size: 13px;
   margin-top: 20px;
 }
+
+/* ==========================================================================
+   Menu lateral
+   ========================================================================== */
+.menu-ucsal {
+  background-color: var(--ucsal-branco);
+}
+
+.menu-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 16px 20px;
+  background: linear-gradient(150deg, var(--ucsal-azul-marinho), var(--ucsal-azul-medio));
+  color: var(--ucsal-branco);
+}
+
+.avatar-iniciais {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ucsal-azul-claro);
+  color: var(--ucsal-branco);
+  font-size: 20px;
+  font-weight: 700;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+}
+
+.menu-aluno {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.menu-aluno strong {
+  font-size: 15px;
+  color: var(--ucsal-branco);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-lista .item {
+  border-color: transparent;
+  color: var(--cor-texto);
+}
+
+.menu-lista .item .icon {
+  color: var(--ucsal-azul-medio);
+}
+
+.menu-lista .item.ativo,
+.menu-lista .item.ativo .item-content {
+  background-color: var(--ucsal-azul-claro-suave);
+  color: var(--ucsal-azul-marinho);
+  font-weight: 700;
+}
+
+.menu-lista .item.ativo {
+  box-shadow: inset 4px 0 0 var(--ucsal-azul-claro);
+}
+
+.menu-lista .item-sair {
+  margin-top: 12px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.menu-lista .item-sair,
+.menu-lista .item-sair .icon {
+  color: var(--status-erro);
+}
+
+.menu-rodape {
+  text-align: center;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+  padding: 16px;
+}
+
+/* ==========================================================================
+   Mural de notícias e atividades
+   ========================================================================== */
+.saudacao {
+  padding: 18px 16px 6px;
+}
+
+.saudacao-titulo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ucsal-azul-marinho);
+  margin: 0;
+}
+
+.saudacao-subtitulo {
+  color: var(--cor-texto-suave);
+  margin: 2px 0 0;
+}
+
+.barra-busca {
+  margin: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: var(--ucsal-branco);
+}
+
+.barra-busca input {
+  background: transparent;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 12px 4px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--ucsal-azul-marinho);
+  background: var(--ucsal-branco);
+  color: var(--ucsal-azul-marinho);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip.ativo {
+  background: var(--ucsal-azul-marinho);
+  color: var(--ucsal-branco);
+}
+
+.card {
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.card-publicacao .item {
+  border-color: transparent;
+}
+
+.imagem-publicacao {
+  position: relative;
+  cursor: pointer;
+}
+
+.imagem-publicacao img {
+  display: block;
+}
+
+.selo-destaque {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--ucsal-branco);
+  color: var(--ucsal-azul-marinho);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: var(--sombra);
+}
+
+.selo-destaque .icon {
+  color: var(--status-a-pagar);
+}
+
+.meta-publicacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.etiqueta-noticia {
+  background: var(--ucsal-azul-marinho);
+  color: var(--ucsal-branco);
+}
+
+.etiqueta-evento {
+  background: var(--ucsal-azul-claro);
+  color: var(--ucsal-branco);
+}
+
+.data-publicacao {
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+}
+
+.corpo-publicacao h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ucsal-azul-marinho);
+  margin-bottom: 6px;
+}
+
+.corpo-publicacao p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--cor-texto-suave);
+}
+
+.acoes-publicacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--cor-borda) !important;
+}
+
+.local-publicacao {
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
