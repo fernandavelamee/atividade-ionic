@@ -1,0 +1,52 @@
+<ion-view view-title="{{ vm.publicacao.categoria || 'Publicação' }}">
+  <ion-content class="fundo-claro">
+
+    <div class="estado-carregando" ng-if="vm.carregando">
+      <ion-spinner icon="crescent" class="spinner-positive"></ion-spinner>
+      <p>Carregando publicação...</p>
+    </div>
+
+    <article class="detalhe-publicacao conteudo-limitado" ng-if="!vm.carregando && vm.publicacao">
+      <img class="detalhe-imagem" ng-src="{{ vm.publicacao.imagem }}" alt="Imagem ilustrativa: {{ vm.publicacao.titulo }}">
+
+      <div class="detalhe-corpo">
+        <span class="etiqueta"
+              ng-class="{ 'etiqueta-noticia': vm.publicacao.categoria === 'Notícia', 'etiqueta-evento': vm.publicacao.categoria === 'Evento' }">
+          {{ vm.publicacao.categoria }}
+        </span>
+
+        <h1>{{ vm.publicacao.titulo }}</h1>
+
+        <ul class="detalhe-meta">
+          <li>
+            <i class="icon ion-ios-calendar-outline"></i>
+            {{ vm.publicacao.data | date:"EEEE, dd 'de' MMMM 'de' yyyy" }}
+          </li>
+          <li ng-if="vm.publicacao.horario">
+            <i class="icon ion-ios-clock-outline"></i> {{ vm.publicacao.horario }}
+          </li>
+          <li ng-if="vm.publicacao.local">
+            <i class="icon ion-ios-location-outline"></i> {{ vm.publicacao.local }}
+          </li>
+          <li ng-if="vm.publicacao.fonte">
+            <i class="icon ion-ios-people-outline"></i> {{ vm.publicacao.fonte }}
+          </li>
+        </ul>
+
+        <p class="detalhe-resumo">{{ vm.publicacao.resumo }}</p>
+        <p class="detalhe-paragrafo" ng-repeat="paragrafo in vm.publicacao.conteudo track by $index">{{ paragrafo }}</p>
+
+        <button type="button" class="button button-block button-positive button-outline" ng-click="vm.voltar()">
+          <i class="icon ion-ios-arrow-back"></i> Voltar ao mural
+        </button>
+      </div>
+    </article>
+
+    <div class="estado-vazio" ng-if="!vm.carregando && !vm.publicacao">
+      <i class="icon ion-ios-help-outline"></i>
+      <p>Publicação não encontrada.</p>
+      <button type="button" class="button button-small button-positive" ng-click="vm.voltar()">Ir para o mural</button>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -98,6 +98,19 @@
             controllerAs: 'vm'
           }
         }
+      })
+
+      // Visualização completa de uma publicação ("Ler mais")
+      .state('app.noticia', {
+        url: '/noticias/:id',
+        data: { secaoMenu: 'mural' },
+        views: {
+          menuContent: {
+            templateUrl: 'templates/noticia-detalhe.html',
+            controller: 'NoticiaDetalheCtrl',
+            controllerAs: 'vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');

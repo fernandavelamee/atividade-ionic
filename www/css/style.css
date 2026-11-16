@@ -540,3 +540,60 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ==========================================================================
+   Detalhe da publicação
+   ========================================================================== */
+.detalhe-publicacao {
+  background: var(--ucsal-branco);
+}
+
+.detalhe-imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.detalhe-corpo {
+  padding: 18px 18px 24px;
+}
+
+.detalhe-corpo h1 {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--ucsal-azul-marinho);
+  margin: 12px 0 10px;
+}
+
+.detalhe-meta {
+  list-style: none;
+  padding: 12px 0;
+  margin: 0 0 14px;
+  border-top: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+  font-size: 14px;
+}
+
+.detalhe-meta li {
+  padding: 3px 0;
+}
+
+.detalhe-meta .icon {
+  color: var(--ucsal-azul-medio);
+  margin-right: 6px;
+}
+
+.detalhe-resumo {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--cor-texto);
+}
+
+.detalhe-paragrafo {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--cor-texto);
+}
