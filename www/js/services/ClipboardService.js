@@ -1,8 +1,4 @@
-/**
- * ClipboardService — copia textos para a área de transferência.
- * Usa a Clipboard API quando disponível (HTTPS/localhost) e, caso contrário,
- * o método clássico com <textarea> + document.execCommand('copy').
- */
+
 (function () {
   'use strict';
 
@@ -15,7 +11,6 @@
       copiar: copiar
     };
 
-    /** Resolve quando o texto foi copiado; rejeita se o navegador não permitir. */
     function copiar(texto) {
       var clipboard = $window.navigator && $window.navigator.clipboard;
 

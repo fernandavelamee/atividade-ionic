@@ -12,6 +12,7 @@
   function MenuCtrl($rootScope, $state, $ionicHistory, $ionicPopup, AuthService) {
     var menu = this;
 
+    menu.aluno = AuthService.getAlunoLogado();
     menu.secaoAtiva = secaoAtiva;
     menu.iniciais = iniciais;
     menu.sair = sair;
@@ -24,7 +25,7 @@
 
     /** "Fernanda Velame" → "FV" (avatar do menu). */
     function iniciais() {
-      var aluno = $rootScope.alunoLogado;
+      var aluno = menu.aluno || AuthService.getAlunoLogado();
       if (!aluno || !aluno.nome) {
         return '';
       }
