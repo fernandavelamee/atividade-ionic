@@ -26,7 +26,7 @@
     var alunos = [
       {
         matricula: '20261001',
-        nome: 'Ana Beatriz Souza Lima',
+        nome: 'Fernanda Velame',
         curso: 'Engenharia de Software',
         campus: 'Pituaçu',
         turno: 'Noturno',

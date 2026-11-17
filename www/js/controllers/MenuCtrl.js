@@ -22,7 +22,7 @@
       return !!dados && dados.secaoMenu === secao;
     }
 
-    /** "Ana Beatriz Souza Lima" → "AL" (avatar do menu). */
+    /** "Fernanda Velame" → "FV" (avatar do menu). */
     function iniciais() {
       var aluno = $rootScope.alunoLogado;
       if (!aluno || !aluno.nome) {

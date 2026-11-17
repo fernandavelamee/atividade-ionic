@@ -26,7 +26,7 @@ test('AuthService: login válido guarda o aluno na sessão e no $rootScope', asy
 
   const aluno = await auth.login('20261001', '123456');
 
-  assert.equal(aluno.nome, 'Ana Beatriz Souza Lima');
+  assert.equal(aluno.nome, 'Fernanda Velame');
   assert.equal(auth.estaAutenticado(), true);
   assert.equal(auth.getAlunoLogado().matricula, '20261001');
   assert.equal(injetor.$rootScope.alunoLogado.matricula, '20261001');
@@ -129,7 +129,7 @@ test('AlunoService: nunca altera campos institucionais (nome, matrícula, curso)
 
   const atualizado = await alunos.atualizarContato('20261001', tentativa);
 
-  assert.equal(atualizado.nome, 'Ana Beatriz Souza Lima');
+  assert.equal(atualizado.nome, 'Fernanda Velame');
   assert.equal(atualizado.matricula, '20261001');
   assert.equal(atualizado.curso, 'Engenharia de Software');
 });
